@@ -20,8 +20,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// The /: means that the following a a parameter. Could be anything that gets passed in.
+
 // Get /thread
-// Get - get all
 app.get("/thread", (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
