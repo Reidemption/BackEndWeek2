@@ -144,7 +144,7 @@ app.post("/post", function (req, res) {
           .json({ message: `unable to find thread to delete`, error: err });
         return;
       }
-      res.status(200).json(thread);
+      res.status(200).json(thread.posts[thread.posts.length - 1]);
     }
   );
 });
@@ -165,7 +165,6 @@ app.delete("/post/:thread_id/:post_id", function (req, res) {
         },
       },
     },
-    { new: true },
     (err, thread) => {
       if (err != null) {
         res.status(500).json({
@@ -179,7 +178,21 @@ app.delete("/post/:thread_id/:post_id", function (req, res) {
           .json({ message: `unable to find post to delete`, error: err });
         return;
       }
-      res.status(200).json(thread);
+      let post;
+      thread.posts.forEach((e) => {
+        if (e._id == req.params.post_id) {
+          post = e;
+        }
+      });
+      if (post == undefined) {
+        res.status(404).json({
+          error: err,
+          message: "could not find post",
+        });
+        return;
+      }
+
+      res.status(200).json(post);
     }
   );
 });
