@@ -17,5 +17,4 @@ function connect(callback) {
 
 module.exports = {
   connect,
-  onConnect,
 };
