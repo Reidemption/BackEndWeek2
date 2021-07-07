@@ -1,4 +1,4 @@
-var url = "http://forum2021.codeschool.cloud";
+var url = "https://reddit-mock-app.herokuapp.com/";
 
 var app = new Vue({
   el: "#app",
@@ -36,7 +36,7 @@ var app = new Vue({
 
   methods: {
     getThreadServer: function () {
-      fetch(`${url}/thread`).then(function (response) {
+      fetch(`${url}/thread/`).then(function (response) {
         response.json().then(function (data) {
           console.log(data);
           app.Threads = data;
@@ -44,8 +44,8 @@ var app = new Vue({
       });
     },
 
-    deleteThreadServer: function (thread) {
-      fetch(`${url}/thread/` + thread, {
+    deleteThreadServer: function (thread_id) {
+      fetch(`${url}/thread/` + thread_id, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

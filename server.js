@@ -5,6 +5,7 @@ const { Thread } = require("./model.js");
 const app = express();
 app.use(cors());
 app.use(express.json({}));
+app.use(express.static("static"));
 
 app.use((req, res, next) => {
   console.log(
@@ -99,7 +100,7 @@ app.post("/thread", function (req, res) {
 app.delete("/thread/:id", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   console.log(`Deleting thread with id: ${req.params.id}`, req.body);
-  Thread.findByIdAndDelete(req.body.thread_id, (err, thread) => {
+  Thread.findByIdAndDelete(req.params.id, (err, thread) => {
     if (err != null) {
       res.status(500).json({
         err: error,
