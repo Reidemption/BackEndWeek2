@@ -1,4 +1,4 @@
-var url = "https://reddit-mock-app.herokuapp.com/";
+var url = "https://reddit-mock-app.herokuapp.com";
 
 var app = new Vue({
   el: "#app",
